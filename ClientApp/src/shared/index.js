@@ -1,0 +1,1 @@
+export { Interface } from './interface';

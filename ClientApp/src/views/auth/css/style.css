@@ -1,0 +1,38 @@
+.ant-carousel{
+    height: 100%;
+}
+
+.slider-container {
+    width: 100%;
+    height: 100%;
+    
+    /* Add this */
+    position:fixed;
+    top:0;
+    left:0;
+    
+}
+
+.slick-list {
+    height: 100%;
+}
+
+.slick-track {
+    height: 100%;
+}
+
+.slick-slide.slick-cloned {
+    height: 100%;
+}
+
+.slick-slide.slick-cloned div {
+    height: 100%;
+}
+
+.slick-slide.slick-active.slick-current {
+    height: 100%;
+}
+
+.slick-slide.slick-active.slick-current div {
+    height: 100%;
+}
