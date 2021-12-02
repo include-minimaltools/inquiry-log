@@ -12,16 +12,16 @@ export function Interface({ children }) {
       <LeftMenuBar />
       <Layout className="site-layout">
         <TopMenuBar />
-        <Content style={{ margin: "0 16px" }}>
+        <Content style={{ margin: "16px 16px" }}>
           <div
             className="site-layout-background"
-            style={{ padding: 24, minHeight: 360 }}
+            style={{ padding: 24, minHeight: 360, height:'100%', backgroundColor:'white', borderRadius: '10px', boxShadow: '0px 0px 2px #888888'}}
           >
             { children || <Result status="404" title="404" subTitle="Page Not Found" /> }
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2018 Created by Ant UED
+          INSY ©2021 Created by Minimal Tools
         </Footer>
       </Layout>
     </Layout>

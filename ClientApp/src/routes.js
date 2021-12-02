@@ -2,12 +2,16 @@ import React from "react";
 import { useRoutes } from 'react-router-dom';
 import { Interface } from "./shared/interface";
 import Login from "./views/auth";
+import Events from "./views/events";
+import InquiryForm from "./views/inquiry/form";
+import InquiryList from "./views/inquiry/list";
+import Profile from "./views/profile";
 
 function Routes() {
   const routes = useRoutes([
     {
       path: '/',
-      element: <Interface>Home</Interface>
+      element: <Interface><Events/></Interface>
     },
     {
       path: '/login',
@@ -15,15 +19,15 @@ function Routes() {
     },
     {
       path: '/inquiry/:id',
-      element: <Interface>Home</Interface>
+      element: <Interface><InquiryForm /></Interface>
     },
     {
       path: '/inquiry-list',
-      element: <Interface>Home</Interface>
+      element: <Interface><InquiryList/></Interface>
     },
     {
       path: '/profile',
-      element: <Interface>Home</Interface>
+      element: <Interface><Profile/></Interface>
     },
     {
       path: '*',

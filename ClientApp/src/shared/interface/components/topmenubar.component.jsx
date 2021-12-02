@@ -1,6 +1,7 @@
 import React from "react";
 import { Avatar, Col, Layout, Row, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const { Title } = Typography;
 const { Header } = Layout;
@@ -16,9 +17,9 @@ function TopMenuBar() {
             </Title>
           </Row>
         </Col>
-        <Col style={{padding:'5px'}}>
+        <Col style={{marginRight:'25px'}}>
           <Row align='middle'>
-            <Avatar icon={<UserOutlined/>} style={{background:'#92C110'}}/>
+            <Link to='/profile'><Avatar icon={<UserOutlined/>} style={{background:'#92C110'}}/></Link>
             <Title level={5} style={{ color: "white", margin: "8px" }}>Adilson Isaac</Title>
           </Row>
         </Col>
