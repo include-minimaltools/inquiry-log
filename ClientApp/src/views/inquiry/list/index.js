@@ -1,6 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Row, Table } from "antd";
-import Modal from "antd/lib/modal/Modal";
+import { Modal } from "antd";
 import React, { useState } from "react";
 import InquiryForm from "../form";
 
@@ -48,11 +48,19 @@ function InquiryList() {
 
   return (
     <>
-    <Modal visible={inquiryModal} onCancel={() => setInquiryModal(false)}><InquiryForm/></Modal>
-      <Row style={{marginBottom:'10px'}}>
-        <Button onClick={() => setInquiryModal(true)}><PlusOutlined/> Registrar nueva consulta</Button>
+      <Modal
+        visible={inquiryModal}
+        onCancel={() => setInquiryModal(false)}
+        footer={null}
+      >
+        <InquiryForm />
+      </Modal>
+      <Row style={{ marginBottom: "10px" }}>
+        <Button onClick={() => setInquiryModal(true)}>
+          <PlusOutlined /> Registrar nueva consulta
+        </Button>
       </Row>
-      <Table columns={columns} pagination={true} />
+      <Table columns={columns} pagination={true} scroll={{ x: '1200px'}}/>
     </>
   );
 }

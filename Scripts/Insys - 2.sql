@@ -86,11 +86,9 @@ CREATE TABLE Course_Group
 
 	Created_By INT NOT NULL,
 	Created_On DATETIME NOT NULL,
-	Updated_By INT,
+	--Updated_By INT,
 	Updated_On DATETIME
 )
-
-ALTER TABLE Course_Group ADD Updated_By INT
 
 CREATE TABLE User_Course
 (
