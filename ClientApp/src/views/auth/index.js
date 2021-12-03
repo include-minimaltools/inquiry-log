@@ -8,6 +8,7 @@ import cover4 from "./images/cover4.webp";
 import cover5 from "./images/cover5.jpg";
 import uni from "../../shared/interface/images/logo-uni.png";
 import { useNavigate } from "react-router-dom";
+import { InquiryService } from "../../service";
 
 const covers = [cover1, cover2, cover3, cover4, cover5];
 
@@ -23,8 +24,20 @@ const contentStyle = {
 function Login() {
   const navigate = useNavigate();
 
-  const loginSession = () => {
-    navigate('/');
+  const loginSession = async (values) => {
+
+    const user = await InquiryService.login(values)
+
+    if (user.data) {
+      localStorage.setItem("user", JSON.stringify(user.data));
+      navigate('/');
+    }
+    else{
+      Modal.error({
+        title: 'Inicio de Sesion Fallido',
+        content: 'Por favor, verifique su usuario y contraseña.',
+      })
+    }
   };
 
   return (
