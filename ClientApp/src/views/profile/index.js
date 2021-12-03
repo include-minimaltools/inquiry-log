@@ -1,12 +1,20 @@
 import { UserOutlined } from "@ant-design/icons";
 import { Card, Col, Divider, Row, Typography } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { userData as user } from "../../helper";
 
 const { Title } = Typography;
 const { Meta } = Card;
 
 function Profile() {
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    setUserData(user());
+    console.log(user());
+  }, []);
+
   return (
     <>
       <Row justify="center">
@@ -15,7 +23,13 @@ function Profile() {
       <Row justify="center">
         <Col>
           <Card
-            cover={<Avatar style={{ marginRight:'40px'}} size={200} icon={<UserOutlined />} />}
+            cover={
+              <Avatar
+                style={{ marginRight: "40px", backgroundColor: "#1890ff" }}
+                size={200}
+                icon={<UserOutlined />}
+              />
+            }
             bordered={true}
             style={{
               justifyContent: "center",
@@ -24,16 +38,17 @@ function Profile() {
               padding: "50px",
             }}
           >
-            <Meta title="Nombre" description="Adilson" />
+            <Meta title="Nombre" description={userData?.name} />
             <Divider />
-            <Meta title="Apellido" description="Lopez" />
+            <Meta title="Apellido" description={userData?.lastname} />
             <Divider />
-            <Meta
-              title="Clase"
-              description="Algoritmización y Estructuras de Datos"
-            />
+            <Meta title="Correo" description={userData?.email} />
             <Divider />
-            <Meta title="Edad" description="30" />
+            <Meta title="Dirección" description={userData?.address} />
+            <Divider />
+            <Meta title="Teléfono" description={userData?.phone} />
+            <Divider />
+            <Meta title="Rol" description={userData?.role} />
           </Card>
         </Col>
       </Row>

@@ -9,11 +9,18 @@ import {
   Select,
   Typography,
 } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
+import { userData } from "../../../helper";
 
 const { Title } = Typography;
 
 function InquiryForm() {
+  const [user, setUser] = React.useState({});
+
+  useEffect(() => {
+    setUser(userData());
+  },[]);
+
   const createInquiry = (values) => {
     console.log(values);
   };
@@ -25,7 +32,7 @@ function InquiryForm() {
         style={{ paddingLeft: "20px", paddingRight: "20px" }}
       >
         <Col>
-          <Title level={4}>Docente: Adilson Isaac Lopez</Title>
+          <Title level={4}>Docente: {user?.name}</Title>
         </Col>
         <Col>
           <Title level={4}>Semestre: II</Title>

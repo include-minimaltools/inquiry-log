@@ -1,5 +1,5 @@
 import { Button, Carousel, Divider, Form, Image, Input, Modal, Row, Typography } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import "./css/style.css";
 import cover1 from "./images/cover1.webp";
 import cover2 from "./images/cover2.webp";
@@ -9,6 +9,7 @@ import cover5 from "./images/cover5.jpg";
 import uni from "../../shared/interface/images/logo-uni.png";
 import { useNavigate } from "react-router-dom";
 import { InquiryService } from "../../service";
+import { userData } from "../../helper";
 
 const covers = [cover1, cover2, cover3, cover4, cover5];
 
@@ -24,8 +25,13 @@ const contentStyle = {
 function Login() {
   const navigate = useNavigate();
 
-  const loginSession = async (values) => {
+  useEffect(() => {
+    if(localStorage.getItem("user") != null) {
+      navigate("/");
+    }
+  },[navigate]);
 
+  const loginSession = async (values) => {
     const user = await InquiryService.login(values)
 
     if (user.data) {

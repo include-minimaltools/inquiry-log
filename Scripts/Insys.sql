@@ -67,6 +67,29 @@ CREATE TABLE Course
 	Updated_On DATETIME
 )
 
+CREATE TABLE [Group]
+(
+	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[Description] NVARCHAR(50) NOT NULL,
+
+	Created_By INT NOT NULL,
+	Created_On DATETIME NOT NULL,
+	Updated_By INT,
+	Updated_On DATETIME
+)
+
+CREATE TABLE Course_Group
+(
+	Course INT NOT NULL FOREIGN KEY REFERENCES Course(Id),
+	[Group] INT NOT NULL FOREIGN KEY REFERENCES [Group](Id)
+	PRIMARY KEY(Course,[Group]),
+
+	Created_By INT NOT NULL,
+	Created_On DATETIME NOT NULL,
+	Updated_By INT,
+	Updated_On DATETIME
+)
+
 CREATE TABLE User_Course
 (
 	[User] INT NOT NULL FOREIGN KEY REFERENCES [User](Id),

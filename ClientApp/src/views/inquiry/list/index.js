@@ -1,7 +1,7 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Row, Table } from "antd";
 import Modal from "antd/lib/modal/Modal";
-import React from "react";
+import React, { useState } from "react";
 import InquiryForm from "../form";
 
 const columns = [
@@ -44,11 +44,13 @@ const columns = [
 ];
 
 function InquiryList() {
+  const [inquiryModal, setInquiryModal] = useState(false);
+
   return (
     <>
-    <Modal visible={false}><InquiryForm/></Modal>
+    <Modal visible={inquiryModal} onCancel={() => setInquiryModal(false)}><InquiryForm/></Modal>
       <Row style={{marginBottom:'10px'}}>
-        <Button><PlusOutlined/> Registrar nueva consulta</Button>
+        <Button onClick={() => setInquiryModal(true)}><PlusOutlined/> Registrar nueva consulta</Button>
       </Row>
       <Table columns={columns} pagination={true} />
     </>
