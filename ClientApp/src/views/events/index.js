@@ -1,4 +1,4 @@
-import { Badge, Calendar, Row } from "antd";
+import { Badge, Calendar } from "antd";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { InquiryService } from "../../service";

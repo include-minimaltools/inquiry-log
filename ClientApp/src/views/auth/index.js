@@ -9,7 +9,6 @@ import cover5 from "./images/cover5.jpg";
 import uni from "../../shared/interface/images/logo-uni.png";
 import { useNavigate } from "react-router-dom";
 import { InquiryService } from "../../service";
-import { userData } from "../../helper";
 
 const covers = [cover1, cover2, cover3, cover4, cover5];
 

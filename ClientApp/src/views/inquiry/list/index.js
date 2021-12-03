@@ -63,11 +63,11 @@ function InquiryList() {
   const [inquiryList, setInquiryList] = useState([]);
   const [action, setAction] = useState("");
   const [user, setUser] = useState({});
+  const [id, setId] = useState();
 
   useEffect(() => {
     const getInquiryList = async () => {
       const data = await InquiryService.getInquiries();
-      console.log(data);
       setInquiryList(data);
     };
 
@@ -77,6 +77,7 @@ function InquiryList() {
 
   const Actions = (e) => {
     setAction(e.target.value);
+    setId(e.target.id);
     setInquiryModal(true);
   };
 
@@ -107,6 +108,7 @@ function InquiryList() {
       actions: (
         <Radio.Group size="small" value={null}>
           <Radio.Button
+            id={item?.id}
             value="edit"
             onClick={Actions}
             disabled={item?.status !== "Pendiente"}
@@ -116,6 +118,7 @@ function InquiryList() {
             </div>
           </Radio.Button>
           <Radio.Button
+            id={item?.id}
             value="approve"
             onClick={Actions}
             disabled={user.role !== 1 && user.role !== 2}
@@ -124,12 +127,13 @@ function InquiryList() {
               <CheckOutlined />
             </div>
           </Radio.Button>
-          <Radio.Button value="view" onClick={Actions}>
+          <Radio.Button id={item?.id} value="view" onClick={Actions}>
             <div title="Detalles del registro">
               <EyeOutlined />
             </div>
           </Radio.Button>
           <Radio.Button
+            id={item?.id}
             value="deleted"
             onClick={Actions}
             disabled={user.role !== 1 && user.role !== 2}
@@ -145,7 +149,14 @@ function InquiryList() {
 
   const newInquiry = () => {
     setAction("new");
+    setId(null);
     setInquiryModal(true);
+  };
+
+  const onClose = async () => {
+    const data = await InquiryService.getInquiries();
+    setInquiryList(data);
+    setInquiryModal(false);
   };
 
   return (
@@ -155,7 +166,11 @@ function InquiryList() {
         onCancel={() => setInquiryModal(false)}
         footer={null}
       >
-        <InquiryForm action={action} />
+        <InquiryForm
+          action={action}
+          id={id}
+          onClose={onClose}
+        />
       </Modal>
       <Row style={{ marginBottom: "10px" }}>
         <Button onClick={newInquiry}>

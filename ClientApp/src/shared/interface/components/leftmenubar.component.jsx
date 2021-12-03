@@ -34,7 +34,7 @@ function LeftMenuBar() {
         <Menu.Item key="/" icon={<HomeOutlined />} onClick={onClick}>
           Inicio
         </Menu.Item>
-        <Menu.Item key="/inquiry/new" icon={<PlusOutlined />} onClick={onClick}>
+        <Menu.Item key="/inquiry" icon={<PlusOutlined />} onClick={onClick}>
           Nueva Consulta
         </Menu.Item>
         <Menu.Item key="/inquiry-list" icon={<BarsOutlined />} onClick={onClick}>

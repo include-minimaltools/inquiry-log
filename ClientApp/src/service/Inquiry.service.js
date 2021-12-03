@@ -54,4 +54,28 @@ export class InquiryService {
     const data = await result.json();
     return data;
   }
+
+  static async getInquiry({ id }) {
+    const result = await fetch(`/api/inquiry/get?id=${id}`, { method: "GET" });
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+    return data;
+  }
+
+  static async insertOrUpdateInquiry({ inquiry }) {
+    const result = await fetch(`/api/inquiry/insertorupdate`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inquiry),
+    });
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+    return data;
+  }
 }

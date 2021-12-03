@@ -41,13 +41,10 @@ insert into Inquiry_Type values ('Presencial', 1, getdate(), 1, getdate())
 insert into Inquiry_Type values ('En l�nea', 1, getdate(), 1, getdate())
 select * from Inquiry_Type
 
-insert into Inquiry_Comment values ('Ninguno.', 1, getdate(), 1, getdate())
-select * from Inquiry_Comment
-
-insert into Inquiry ([Week], Students_Number, [Type], [Subject], Carnet, Comments, Status, Teacher, Course, [Group], Semester, Created_By, Created_On, Updated_By, Updated_On) values (
-	12, 4, 1, 'Prorroga', '2020-1384U', 1, 'Aprobado', 1, 1, 1, 4, 1, getdate(), 1,getdate())
-insert into Inquiry ([Week], Students_Number, [Type], [Subject], Carnet, Comments, Status, Teacher, Course, [Group], Semester, Created_By, Created_On, Updated_By, Updated_On) values (
-	6, 2, 2, 'Consulta de clase pasada', '2020-0505U', 1, 'Aprobado', 4, 1, 1, 5, 1, getdate(), 1,getdate())
+insert into Inquiry ([Week], Students_Number, [Type], [Subject], Carnet, Status, Teacher, Course, [Group], Semester, Created_By, Created_On, Updated_By, Updated_On) values (
+	12, 4, 1, 'Prorroga', '2020-1384U', 'Aprobado', 1, 1, 1, 4, 1, getdate(), 1,getdate())
+insert into Inquiry ([Week], Students_Number, [Type], [Subject], Carnet, Status, Teacher, Course, [Group], Semester, Created_By, Created_On, Updated_By, Updated_On) values (
+	6, 2, 2, 'Consulta de clase pasada', '2020-0505U', 'Aprobado', 4, 1, 1, 5, 1, getdate(), 1,getdate())
 select * from Inquiry
 
 insert into [Group] values('2M1-CO', 1, getdate(), 1, getdate())

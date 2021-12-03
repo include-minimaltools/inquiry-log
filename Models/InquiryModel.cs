@@ -36,10 +36,10 @@ namespace inquiry_log.Models
                 .HasForeignKey(e => e.Course)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Inquiry_Comment>()
-                .HasMany(e => e.Inquiry)
-                .WithOne(e => e.Inquiry_Comment)
-                .HasForeignKey(e => e.Comments)
+            modelBuilder.Entity<Inquiry>()
+                .HasMany(e => e.Inquiry_Comment)
+                .WithOne(e => e.Inquiry1)
+                .HasForeignKey(e => e.Inquiry)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Inquiry_Type>()

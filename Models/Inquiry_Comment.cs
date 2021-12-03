@@ -8,13 +8,9 @@ namespace inquiry_log.Models
 
     public partial class Inquiry_Comment
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Inquiry_Comment()
-        {
-            Inquiry = new HashSet<Inquiry>();
-        }
-
         public int Id { get; set; }
+
+        public int Inquiry { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -28,7 +24,6 @@ namespace inquiry_log.Models
 
         public DateTime? Updated_On { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inquiry> Inquiry { get; set; }
+        public virtual Inquiry Inquiry1 { get; set; }
     }
 }

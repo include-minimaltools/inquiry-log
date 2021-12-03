@@ -18,8 +18,8 @@ function Routes() {
       element: <Login/>
     },
     {
-      path: '/inquiry/:id',
-      element: <Interface><InquiryForm /></Interface>
+      path: '/inquiry',
+      element: <Interface><InquiryForm action='new'/></Interface>
     },
     {
       path: '/inquiry-list',
