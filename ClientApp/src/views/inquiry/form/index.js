@@ -9,13 +9,16 @@ import {
   Select,
   Typography,
 } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { userData } from "../../../helper";
 
 const { Title } = Typography;
 
 function InquiryForm() {
-  const [user, setUser] = React.useState({});
+  const [user, setUser] = useState({});
+  const [inquiry, setInquiry] = useState({
+
+  });
 
   useEffect(() => {
     setUser(userData());

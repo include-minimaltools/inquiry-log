@@ -12,6 +12,7 @@ namespace inquiry_log.Models
         public Group()
         {
             Course_Group = new HashSet<Course_Group>();
+            Inquiries = new HashSet<Inquiry>();
         }
 
         public int Id { get; set; }
@@ -30,5 +31,8 @@ namespace inquiry_log.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course_Group> Course_Group { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inquiry> Inquiries { get; set; }
     }
 }

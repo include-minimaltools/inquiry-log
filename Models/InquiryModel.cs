@@ -82,6 +82,12 @@ namespace inquiry_log.Models
                 .HasForeignKey(e => e.Group)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Group>()
+                .HasMany(e => e.Inquiries)
+                .WithOne(e => e.Group1)
+                .HasForeignKey(e => e.Group)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<Course_Group>()
                 .HasKey(e => new { e.Course, e.Group });
 

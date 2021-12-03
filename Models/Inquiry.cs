@@ -41,9 +41,13 @@ namespace inquiry_log.Models
 
         public int? Updated_By { get; set; }
 
+        public int Group { get; set; }
+
         public DateTime? Updated_On { get; set; }
 
         public virtual Course Course1 { get; set; }
+        
+        public virtual Group Group1 { get; set; }
 
         public virtual Inquiry_Comment Inquiry_Comment { get; set; }
 
