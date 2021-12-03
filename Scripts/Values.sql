@@ -24,7 +24,7 @@ select* from Role_Permission
 
 
 INSERT INTO [User] values('Adilgonzales@email.com', 'Adil123', 2, 'Adil', 'Gonzalez', 'Managua, Nicaragua', '88776655', 1, getdate(), 1, getdate())
-INSERT INTO [User] values('Administradormail@email', 'admin123', 1, 'Admin', 'Istrador', 'Managua, Nicaragua', '11223344', 1, getdate(), 1, getdate())
+INSERT INTO [User] values('Administradormail@email.com', 'admin123', 1, 'Admin', 'Istrador', 'Managua, Nicaragua', '11223344', 1, getdate(), 1, getdate())
 INSERT INTO [User] values('Jefedefacultad@email.com', 'jefe123', 3, 'Jefe', 'De facultad', 'Managua, Nicaragua', '44332211', 1, getdate(), 1, getdate())
 INSERT INTO [User] values('Gabrielortiz@email.com', 'gabrielitoselacome', 2, 'Gabriel', 'Ortiz', 'Managua, Nicaragua', '11442233', 1, getdate(), 1, getdate())
 select* from [User]

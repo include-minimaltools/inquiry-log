@@ -48,7 +48,7 @@ function Profile() {
             <Divider />
             <Meta title="Teléfono" description={userData?.phone} />
             <Divider />
-            <Meta title="Rol" description={userData?.role} />
+            <Meta title="Rol" description={userData?.role_name} />
           </Card>
         </Col>
       </Row>

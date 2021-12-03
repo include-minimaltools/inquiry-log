@@ -22,7 +22,49 @@ namespace inquiry_log.Controllers
             join type in _context.Inquiry_Type on inquiry.Type equals type.Id
             join course in _context.Course on inquiry.Course equals course.Id
             join Group in _context.Group on inquiry.Group equals Group.Id
-            where inquiry.Status != "Deleted"
+            where inquiry.Status != "Eliminado"
+            select new
+            {
+                inquiry.Id,
+                inquiry.Students_Number,
+                inquiry.Week,
+                Type = type.Description,
+                inquiry.Subject,
+                inquiry.Created_On,
+                inquiry.Carnet,
+                inquiry.Status,
+                Course = course.Name,
+                Group = Group.Description,
+            });
+
+        [HttpGet("[action]")]
+        public IEnumerable<dynamic> GetByUser(int id)
+        => (from inquiry in _context.Inquiry
+            join type in _context.Inquiry_Type on inquiry.Type equals type.Id
+            join course in _context.Course on inquiry.Course equals course.Id
+            join Group in _context.Group on inquiry.Group equals Group.Id
+            where inquiry.Status != "Eliminado" && inquiry.Teacher == id
+            select new
+            {
+                inquiry.Id,
+                inquiry.Students_Number,
+                inquiry.Week,
+                Type = type.Description,
+                inquiry.Subject,
+                inquiry.Created_On,
+                inquiry.Carnet,
+                inquiry.Status,
+                Course = course.Name,
+                Group = Group.Description,
+            });
+
+        [HttpGet("[action]")]
+        public IEnumerable<dynamic> GetPending()
+        => (from inquiry in _context.Inquiry
+            join type in _context.Inquiry_Type on inquiry.Type equals type.Id
+            join course in _context.Course on inquiry.Course equals course.Id
+            join Group in _context.Group on inquiry.Group equals Group.Id
+            where inquiry.Status != "Eliminado" && inquiry.Status == "Pendiente"
             select new
             {
                 inquiry.Id,
@@ -49,7 +91,7 @@ namespace inquiry_log.Controllers
         [HttpGet("[action]")]
         public dynamic Get(int id)
         => (from i in _context.Inquiry
-            where i.Id == id && i.Status != "Deleted"
+            where i.Id == id && i.Status != "Eliminado"
             select new
             {
                 i.Id,
@@ -105,17 +147,18 @@ namespace inquiry_log.Controllers
             }
         }
 
+
+
         [HttpPost("[action]")]
-        public bool UpdateInquiryStatus([FromBody] int id, [FromBody] string status, [FromBody] int updated_by)
+        public bool UpdateStatus([FromBody] Inquiry body)
         {
             try
             {
-                if (_context.User.First(u => u.Id == updated_by).Role != 1 || _context.User.First(u => u.Id == updated_by).Role != 2)
-                {
+                var user = _context.User.First(u => u.Id == body.Updated_By);
+                if (user.Role != 1 && user.Role != 2)
                     return false;
-                }
 
-                var inquiry = _context.Inquiry.FirstOrDefault(i => i.Id == id);
+                var inquiry = _context.Inquiry.FirstOrDefault(i => i.Id == body.Id);
 
                 if (inquiry == null)
                     return false;
@@ -123,7 +166,7 @@ namespace inquiry_log.Controllers
                 inquiry.Updated_By = inquiry.Updated_By;
                 inquiry.Updated_On = DateTime.Now;
 
-                inquiry.Status = status;
+                inquiry.Status = body.Status;
                 _context.Entry(inquiry).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
                 _context.SaveChanges();

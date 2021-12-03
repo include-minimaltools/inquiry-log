@@ -17,12 +17,26 @@ namespace inquiry_log.Controllers
         [HttpGet("[action]")]
         public dynamic Login(string email, string password)
         {
-            var user = _context.User.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
+            var data = (from u in _context.User
+                       join r in _context.Role on u.Role equals r.Id
+                       where u.Email == email && u.Password == password
+                       select new
+                       {
+                           u.Id,
+                           u.Name,
+                           u.Lastname,
+                           u.Email,
+                           u.Password,
+                           u.Address,
+                           u.Phone,
+                           u.Role,
+                           Role_name = r.Description
+                       }).FirstOrDefault();
 
-            if (user == null)
+            if (data == null)
                 return new { status = "error", message = "User not found" };
 
-            return new { status = "success", message = "User found", data = user };
+            return new { status = "success", message = "User found", data = data };
         }
     }
 }

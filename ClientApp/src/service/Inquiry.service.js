@@ -1,6 +1,49 @@
 import { userData } from "../helper";
 
 export class InquiryService {
+
+  static async changeStatus({ status, inquiryId }) {
+    const { id } = userData();
+
+    const result = await fetch(`/api/inquiry/UpdateStatus`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Status: status,
+        Updated_By: id,
+        Id: inquiryId,
+      }),
+    });
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+    return data;
+  }
+
+  static async getInquiriesByUser() {
+    const { id } = userData();
+    const result = await fetch(`/api/inquiry/getbyuser?id=${id}`, { method: "GET" });
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+
+    return data;
+  }
+
+  static async getInquiriesPending() {
+    const result = await fetch(`/api/inquiry/getpending`, { method: "GET" });
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+
+    return data;
+  }
+
   static async getInquiries() {
     const result = await fetch(`/api/inquiry/getall`, { method: "GET" });
 
@@ -72,6 +115,33 @@ export class InquiryService {
       },
       body: JSON.stringify(inquiry),
     });
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+    return data;
+  }
+  
+  static async getUsers(){
+    const result = await fetch(`/api/user/getall`, { method: "GET" });
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+    return data;
+  }
+
+  static async getRole(){
+    const result = await fetch(`/api/role/getall`, { method: "GET" });
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+    return data;
+  }
+
+  static async getPermission(){
+    const result = await fetch(`/api/permission/getall`, { method: "GET" });
 
     if (result.status !== 200) return null;
 

@@ -8,7 +8,7 @@ function Events() {
 
   useEffect(() => {
     async function getInquiries() {
-      setInquiries(await InquiryService.getInquiries());
+      setInquiries(await InquiryService.getInquiriesByUser());
     }
     getInquiries();
   }, []);
