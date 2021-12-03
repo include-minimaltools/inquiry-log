@@ -1,26 +1,57 @@
+import { userData } from "../helper";
+
 export class InquiryService {
-    static async getInquiry(inquiryId) {
-        return this.http.get(`/api/inquiry/${inquiryId}`);
-    }
-    static async getInquiries() {
-        return this.http.get('/api/inquiry');
-    }
-    static async createInquiry(inquiry) {
-        return this.http.post('/api/inquiry', inquiry);
-    }
-    static async updateInquiry(inquiry) {
-        return this.http.put(`/api/inquiry/${inquiry.id}`, inquiry);
-    }
-    static async deleteInquiry(inquiryId) {
-        return this.http.delete(`/api/inquiry/${inquiryId}`);
-    }
-    static async login({ email, password }) {
-        const result = await fetch(`/api/auth/login?email=${email}&password=${password}`, { method: 'GET'});
+  static async getInquiries() {
+    const result = await fetch(`/api/inquiry/getall`, { method: "GET" });
 
-        if(result.status !== 200) 
-            return null;
+    if (result.status !== 200) return null;
 
-        const data = await result.json();
-        return data;
-    }
+    const data = await result.json();
+
+    return data;
+  }
+
+  static async login({ email, password }) {
+    const result = await fetch(
+      `/api/auth/login?email=${email}&password=${password}`,
+      { method: "GET" }
+    );
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+    return data;
+  }
+
+  static async getCourseByUser() {
+    const { id } = userData();
+    const result = await fetch(`/api/course/getbyuser?id=${id}`, {
+      method: "GET",
+    });
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+    return data;
+  }
+
+  static async getGroupByCourse({ id }) {
+    const result = await fetch(`/api/group/getbycourse?id=${id}`, {
+      method: "GET",
+    });
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+    return data;
+  }
+
+  static async getInquiryTypes() {
+    const result = await fetch(`/api/inquiry/gettypes`, { method: "GET" });
+
+    if (result.status !== 200) return null;
+
+    const data = await result.json();
+    return data;
+  }
 }

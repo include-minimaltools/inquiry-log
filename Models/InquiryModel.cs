@@ -10,6 +10,8 @@ namespace inquiry_log.Models
         }
 
         public virtual DbSet<Course> Course { get; set; }
+        public virtual DbSet<Course_Group> Course_Group { get; set; }
+        public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Inquiry> Inquiry { get; set; }
         public virtual DbSet<Inquiry_Comment> Inquiry_Comment { get; set; }
         public virtual DbSet<Inquiry_Type> Inquiry_Type { get; set; }
@@ -96,7 +98,13 @@ namespace inquiry_log.Models
 
             modelBuilder.Entity<User_Course>()
                 .HasKey(e => new { e.User, e.Course });
-            
+
+            modelBuilder.Entity<Inquiry_Type>()
+                .HasMany(e => e.Inquiry)
+                .WithOne(e => e.Inquiry_Type)
+                .HasForeignKey(e => e.Type)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

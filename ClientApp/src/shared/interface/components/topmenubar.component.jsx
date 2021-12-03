@@ -15,7 +15,7 @@ function TopMenuBar() {
   },[]);
 
   return (
-    <Header style={{ padding: 0, background: "#003782" }}>
+    <Header style={{ padding: 0, background: "#003782", overflowY:'hidden' }}>
       <Row justify="space-between" style={{ height: "100%" }}>
         <Col flex="auto">
           <Row justify="center">

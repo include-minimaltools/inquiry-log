@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using inquiry_log.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -13,16 +14,34 @@ namespace inquiry_log.Controllers
         {
             _context = context;
         }
-        
+
         [HttpGet("[action]")]
-        public dynamic Login(string email, string password)
-        {
-            var user = _context.User.Where(x => x.Email == email && x.Password == password).ToList();
+        public IEnumerable<dynamic> GetAll()
+        => (from inquiry in _context.Inquiry
+            join type in _context.Inquiry_Type on inquiry.Type equals type.Id
+            join course in _context.Course on inquiry.Course equals course.Id
+            join Group in _context.Group on inquiry.Group equals Group.Id
+            select new
+            {
+                inquiry.Id,
+                inquiry.Students_Number,
+                inquiry.Week,
+                Type = type.Description,
+                inquiry.Subject,
+                inquiry.Created_On,
+                inquiry.Carnet,
+                inquiry.Status,
+                Course = course.Name,
+                Group = Group.Description,
+            });
 
-            if (user.Count == 0)
-                return new { status = "error", message = "User not found" };
-
-            return new { status = "success", message = "User found", user = user };
-        }
+        [HttpGet("[action]")]
+        public IEnumerable<dynamic> GetTypes()
+        => (from type in _context.Inquiry_Type
+            select new
+            {
+                type.Id,
+                type.Description,
+            });
     }
 }

@@ -22,7 +22,10 @@ function LeftMenuBar() {
     setCollapsed(!collapsed);
   };
 
-  
+  const closeSession = () => {
+    localStorage.removeItem('user');
+    navigate('/login');
+  }  
 
   return (
     <Sider style={sider} collapsed={collapsed}>
@@ -40,7 +43,7 @@ function LeftMenuBar() {
         <Menu.Item key="/profile" icon={<UserOutlined />} onClick={onClick}>
           Mi perfil
         </Menu.Item>
-        <Menu.Item key="/login" icon={<ExportOutlined />} onClick={onClick}>
+        <Menu.Item key="/login" icon={<ExportOutlined />} onClick={closeSession}>
           Cerrar Sesión
         </Menu.Item>
         <Menu.Item key="0" icon={collapsed ? <RightOutlined /> : <LeftOutlined/>} onClick={onCollapse}>
